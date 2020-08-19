@@ -97,11 +97,22 @@ function Noise:noise(x)
   local t0 = 1 - (x0*x0)
   t0 = t0*t0
   local pIdx = bit32.band(i0, 0xff)
+  if pIdx<1 then
+    pIdx = 1
+  elseif pIdx>255 then
+    pIdx = 255
+  end
   local pEl = self.perm[pIdx]
   local g = Noise.grad1(pEl, x0)
   n0 = t0*t0*g
   
   pIdx = bit32.band(i1, 0xff)
+  if pIdx<1 then
+    pIdx = 1
+  elseif pIdx>255 then
+    pIdx = 255
+  end
+      
   pEl = self.perm[pIdx]
   g = Noise.grad1(pEl, x1)
   t1 = t1*t1
