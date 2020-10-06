@@ -41,7 +41,7 @@ function init()
   resP:add(makeParam("detune",0,1, 0, function(f) engine.spread(f) end))
 
   resP:add(makeParam("revMix",0,1,0.33, function(f) engine.revMix(f) end))
-  resP:add(makeParam("revRoom",0,1,0.5, function(f) engine.revRoom(f) end))
+  resP:add(makeParam("revRoom",0,0.5,0.1, function(f) engine.revRoom(f) end))
   resP:add(makeParam("revDamp",0,1,0.5, function(f) engine.revDamp(f) end))
 
   resP:add(makeParam("delSec",0,10,0.2, function(f) engine.delSec(f)  end))
@@ -283,7 +283,7 @@ end
 
 function drawReverb(_x, _y, _sz)
   local curBgt = math.ceil(resP:get("revMix")*10)
-  local curSz = _sz*resP:get("revRoom")
+  local curSz = _sz*resP:get("revRoom")*2
   local s2 = curSz/2
   local x = _x - s2
   local y = _y - s2
